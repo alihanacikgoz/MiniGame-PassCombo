@@ -57,13 +57,14 @@ namespace Runtime.Core.Managers
             }
         }
 
-        public GameObject Get(string id)
+        public GameObject Get(string id, Vector3 spawnPoint)
         {
             for (int i = 0; i < poolItems.Count; i++)
             {
                 if (!poolItems[i].activeInHierarchy && poolItems[i].CompareTag(id) )
                 {
-                    
+                    poolItems[i].transform.position = spawnPoint;
+                    poolItems[i].SetActive(true);
                     return poolItems[i];
                 }
             }
@@ -72,8 +73,9 @@ namespace Runtime.Core.Managers
             {
                 if (item.teammate.teammatePrefab.CompareTag(id) && item.amount > 0)
                 {
-                    GameObject obj = Instantiate(item.teammate.teammatePrefab, poolParent.transform);
-                    obj.SetActive(false);
+                    GameObject obj = Instantiate(item.teammate.teammatePrefab);
+                    obj.transform.position = spawnPoint;
+                    obj.SetActive(true);
                     poolItems.Add(obj);
                     return obj;
                 }

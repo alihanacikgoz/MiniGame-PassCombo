@@ -33,6 +33,7 @@ namespace Runtime.Signals
 
         public Action OnGameStartAction = delegate { };
         public Action OnGameEndAction = delegate { };
+        public Action OnTeammateSpawnAction = delegate { };
 
         #endregion
 
