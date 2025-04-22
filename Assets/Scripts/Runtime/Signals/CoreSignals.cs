@@ -1,0 +1,47 @@
+using System;
+using UnityEngine;
+
+namespace Runtime.Signals
+{
+    public class CoreSignals : MonoBehaviour
+    {
+        #region Singleton
+
+        public static CoreSignals Instance { get; private set; }
+
+        private void Awake()
+        {
+            if (Instance != this && Instance != null)
+            {
+                Destroy(gameObject);
+                return;
+            }
+
+            Instance = this;
+        }
+
+        #endregion
+
+        #region Pass
+
+        public Action OnCorrectPassAction = delegate { };
+        public Action OnWrongPassAction = delegate { };
+
+        #endregion
+
+        #region CoreGame
+
+        public Action OnGameStartAction = delegate { };
+        public Action OnGameEndAction = delegate { };
+
+        #endregion
+
+        #region PlayerActions
+
+        public Action OnPlayerKickForPass = delegate { };
+        public Action OnPlayerCelebrate = delegate { };
+
+        #endregion
+
+    }
+}
