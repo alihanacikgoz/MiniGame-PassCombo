@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using NaughtyAttributes;
 using Runtime.ScriptableObjects;
+using Runtime.Signals;
 using UnityEngine;
 
 namespace Runtime.Core.Managers
@@ -13,6 +15,7 @@ namespace Runtime.Core.Managers
         public bool trueToPass;
         public int pointsWillGive;
         public bool isRare;
+        
     }
 
     public class ObjectPoolingManager : MonoBehaviour
@@ -37,11 +40,16 @@ namespace Runtime.Core.Managers
         public List<PoolItem> teammates;
         public List<GameObject> poolItems;
         public Transform poolParent;
+        public float OFFSET;
+        
+        [Foldout("Player"), SerializeField]
+        private Transform playerTransform;
 
-        private void Start()
+        private void OnEnable()
         {
-            CreatingPoolItems();
+            CoreSignals.Instance.OnTeammateSpawnAction += CreatingPoolItems;
         }
+        
 
         private void CreatingPoolItems()
         {
@@ -61,9 +69,15 @@ namespace Runtime.Core.Managers
         {
             for (int i = 0; i < poolItems.Count; i++)
             {
-                if (!poolItems[i].activeInHierarchy && poolItems[i].CompareTag(id) )
+                if (!poolItems[i].activeInHierarchy && poolItems[i].CompareTag(id))
                 {
                     poolItems[i].transform.position = spawnPoint;
+
+                    // ROTATION EKLENDİ
+                    Vector3 directionToPlayer = playerTransform.position - spawnPoint;
+                    float angle = Mathf.Atan2(directionToPlayer.y, directionToPlayer.x) * Mathf.Rad2Deg;
+                    poolItems[i].transform.rotation = Quaternion.Euler(0f, 0f, angle + OFFSET);
+
                     poolItems[i].SetActive(true);
                     return poolItems[i];
                 }
@@ -71,15 +85,22 @@ namespace Runtime.Core.Managers
 
             foreach (PoolItem item in teammates)
             {
-                if (item.teammate.teammatePrefab.CompareTag(id) && item.amount > 0)
+                if (item.teammate.teammatePrefab.CompareTag(id))
                 {
-                    GameObject obj = Instantiate(item.teammate.teammatePrefab);
+                    GameObject obj = Instantiate(item.teammate.teammatePrefab, poolParent.transform);
                     obj.transform.position = spawnPoint;
-                    obj.SetActive(true);
+
+                    // ROTATION EKLENDİ
+                    Vector3 directionToPlayer = playerTransform.position - spawnPoint;
+                    float angle = Mathf.Atan2(directionToPlayer.y, directionToPlayer.x) * Mathf.Rad2Deg;
+                    obj.transform.rotation = Quaternion.Euler(0f, 0f, angle + OFFSET);
+
+                    obj.SetActive(false);
                     poolItems.Add(obj);
                     return obj;
                 }
             }
+
             return null;
         }
     }

@@ -50,16 +50,37 @@ namespace Runtime.Core.Managers
 
         private void TeamMateSpawnAction()
         {
-            Debug.Log("Çalıştı");
-            Vector2 min = new Vector2(Mathf.Min(northWestBorder.position.x, southWestBorder.position.x), Mathf.Min(northWestBorder.position.y, southWestBorder.position.y));
-            Vector2 max = new Vector2(Mathf.Min(northEastBorder.position.x, southEastBorder.position.x), Mathf.Min(northEastBorder.position.y, southEastBorder.position.y));
+            float minX = Mathf.Min(northWestBorder.position.x, southWestBorder.position.x);
+            float maxX = Mathf.Max(northEastBorder.position.x, southEastBorder.position.x);
 
-            float randomX = Random.Range(min.x + 2, max.x + 2);
-            float randomY = Random.Range(min.y + 2, max.y + 2);
+            float minY = Mathf.Min(southWestBorder.position.y, southEastBorder.position.y);
+            float maxY = Mathf.Max(northWestBorder.position.y, northEastBorder.position.y);
+
+            float randomX = Random.Range(minX, maxX);
+            float randomY = Random.Range(minY, maxY);
 
             Vector3 spawnPoint = new Vector3(randomX, randomY, 0f);
-
+            
             ObjectPoolingManager.Instance.Get("TeamMate", spawnPoint);
+        }
+        
+
+        private void OnDrawGizmos()
+        {
+            if (!northWestBorder || !southWestBorder || !northEastBorder || !southEastBorder) return;
+
+            Gizmos.color = Color.black;
+
+            Vector3 topLeft = northWestBorder.position;
+            Vector3 bottomLeft = southWestBorder.position;
+            Vector3 topRight = northEastBorder.position;
+            Vector3 bottomRight = southEastBorder.position;
+
+            // Dört kenarı çiz
+            Gizmos.DrawLine(topLeft, topRight);
+            Gizmos.DrawLine(topRight, bottomRight);
+            Gizmos.DrawLine(bottomRight, bottomLeft);
+            Gizmos.DrawLine(bottomLeft, topLeft);
         }
     }
 }
