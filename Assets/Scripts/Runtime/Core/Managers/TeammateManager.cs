@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using NaughtyAttributes;
 using Runtime.ScriptableObjects;
@@ -28,24 +29,23 @@ namespace Runtime.Core.Managers
         #endregion
 
         #region SerializedField Variables
-
-        [Foldout("Spawn Points"), SerializeField]
-        private Transform northWestBorder;
-
-        [Foldout("Spawn Points"), SerializeField]
-        private Transform southWestBorder;
-
-        [Foldout("Spawn Points"), SerializeField]
-        private Transform northEastBorder;
-
-        [Foldout("Spawn Points"), SerializeField]
-        private Transform southEastBorder;
+        
+        [Foldout("Spawn Points"), SerializeField] private Transform northWestBorder;
+        [Foldout("Spawn Points"), SerializeField] private Transform southWestBorder;
+        [Foldout("Spawn Points"), SerializeField] private Transform northEastBorder;
+        [Foldout("Spawn Points"), SerializeField] private Transform southEastBorder;
+        
+        [Foldout("Spawn Mechanics"), SerializeField] private float minDistanceFromOthers = 1.5f;
+        [Foldout("Spawn Mechanics"), SerializeField] private float minDistanceFromPlayer = 2f;
+        [Foldout("Spawn Mechanics"), SerializeField] private LayerMask teammateLayer;
+        [Foldout("Spawn Mechanics"), SerializeField] private LayerMask playerLayer;
 
         #endregion
 
+
         private void Start()
         {
-            CoreSignals.Instance.OnTeammateSpawnAction += TeamMateSpawnAction;
+            StartCoroutine(SpawnTeamMate());
         }
 
         private void TeamMateSpawnAction()
@@ -59,11 +59,43 @@ namespace Runtime.Core.Managers
             float randomX = Random.Range(minX, maxX);
             float randomY = Random.Range(minY, maxY);
 
-            Vector3 spawnPoint = new Vector3(randomX, randomY, 0f);
+            int maxAttempts = 10;
+
+            for (int i = 0; i < maxAttempts; i++)
+            {
+                Vector3 spawnPoint = new Vector3(randomX, randomY, 0f);
+
+                if (IsSpawnPointValid(spawnPoint))
+                {
+                    ObjectPoolingManager.Instance.Get("TeamMate", spawnPoint);
+                    break;
+                }
+            }
+
             
-            //ObjectPoolingManager.Instance.Get("TeamMate", spawnPoint);
-            ObjectPoolingManager.Instance.Get("TeamMate", spawnPoint);
         }
-        
+
+        private bool IsSpawnPointValid(Vector2 spawnPoint)
+        {
+            Collider2D[] closeToOthers = Physics2D.OverlapCircleAll(spawnPoint, minDistanceFromOthers, teammateLayer);
+            if (closeToOthers.Length > 0)
+                return false;
+            
+            Collider2D[] closeToPlayer = Physics2D.OverlapCircleAll(spawnPoint, minDistanceFromPlayer, playerLayer);
+            if (closeToPlayer.Length > 0)
+                return false;
+            
+            return true;
+        }
+
+        IEnumerator SpawnTeamMate()
+        {
+            while (true)
+            {
+                yield return new WaitForSeconds(1f);
+
+                TeamMateSpawnAction();
+            }
+        }
     }
 }

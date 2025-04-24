@@ -6615,6 +6615,14 @@ MonoBehaviour:
   southWestBorder: {fileID: 996439118}
   northEastBorder: {fileID: 1139980681}
   southEastBorder: {fileID: 1259215176}
+  minDistanceFromOthers: 1.5
+  minDistanceFromPlayer: 2
+  teammateLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!114 &2091788936
 MonoBehaviour:
   m_ObjectHideFlags: 0

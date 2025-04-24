@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4457775989962217180}
   m_Layer: 0
   m_Name: Football
-  m_TagString: Untagged
+  m_TagString: Football
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -78,12 +78,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -5518378738209896051, guid: 38d635d58bb6c464d81e373597efc1c9, type: 3}
+  m_Sprite: {fileID: 2940763705725730678, guid: 653cd2a580bc94569b355d42376200da, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.18, y: 0.18}
+  m_Size: {x: 0.73, y: 0.73}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -123,8 +123,8 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Radius: 0.09
+  m_Offset: {x: 0, y: 0.0017161369}
+  m_Radius: 0.36973205
 --- !u!50 &4457775989962217180
 Rigidbody2D:
   serializedVersion: 5
