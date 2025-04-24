@@ -40,9 +40,9 @@ namespace Runtime.Core.Managers
             score--;
         }
 
-        private void AddScore()
+        private void AddScore(int? points)
         {
-            score++;
+            score+= points ?? 1;
         }
 
         private void OnDisable()

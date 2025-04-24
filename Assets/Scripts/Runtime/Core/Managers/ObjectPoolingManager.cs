@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using NaughtyAttributes;
+using Runtime.Core.Controllers;
 using Runtime.ScriptableObjects;
 using Runtime.Signals;
 using UnityEngine;
@@ -59,6 +60,7 @@ namespace Runtime.Core.Managers
                 for (int i = 0; i < poolItem.amount; i++)
                 {
                     GameObject go = Instantiate(poolItem.teammate.teammatePrefab, poolParent.transform);
+                    go.GetComponent<TeamMateController>().teammateOptions = poolItem;
                     go.SetActive(false);
                     poolItems.Add(go);
                 }

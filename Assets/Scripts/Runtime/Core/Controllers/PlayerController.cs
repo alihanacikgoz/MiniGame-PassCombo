@@ -52,7 +52,7 @@ namespace Runtime.Core.Controllers
         }
         
 
-        private void PassPerformedSuccessfully()
+        private void PassPerformedSuccessfully(int? points)
         {
             _ball.transform.position = ballOrigin.transform.position;
             _ballRigidbody.linearVelocity = Vector2.zero;
