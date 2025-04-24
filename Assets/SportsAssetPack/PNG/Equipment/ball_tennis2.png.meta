@@ -199,7 +199,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ball_tennis2_0: -6407344871741944330
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

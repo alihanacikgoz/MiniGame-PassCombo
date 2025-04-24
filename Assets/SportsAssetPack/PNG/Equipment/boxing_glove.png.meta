@@ -199,7 +199,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      boxing_glove_0: 422879487872942737
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

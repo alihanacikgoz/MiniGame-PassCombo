@@ -1149,7 +1149,46 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      groundTransparent_white_0: -9002847666273897121
+      groundTransparent_white_1: -340232003793039408
+      groundTransparent_white_10: 7130811566939368825
+      groundTransparent_white_11: 1145514828751729472
+      groundTransparent_white_12: -7744641617174028945
+      groundTransparent_white_13: 3165721135641282161
+      groundTransparent_white_14: -8995816110704275013
+      groundTransparent_white_15: 4056517999690980244
+      groundTransparent_white_16: 6706039508189048702
+      groundTransparent_white_17: 3445211339784584062
+      groundTransparent_white_18: -4999559348205939754
+      groundTransparent_white_19: -5273471692626988346
+      groundTransparent_white_2: 4674521658388337755
+      groundTransparent_white_20: 9105739597787452286
+      groundTransparent_white_21: -4240898611915532423
+      groundTransparent_white_22: 5604741016803095815
+      groundTransparent_white_23: 241892873368192796
+      groundTransparent_white_24: 7764824678959174130
+      groundTransparent_white_25: 7212283549344641099
+      groundTransparent_white_26: -7425653917787054156
+      groundTransparent_white_27: 17497485808382658
+      groundTransparent_white_28: 273785476440449004
+      groundTransparent_white_29: -4265487066285182399
+      groundTransparent_white_3: 8829145461389292410
+      groundTransparent_white_30: -1924182103207843209
+      groundTransparent_white_31: 5588328182589720291
+      groundTransparent_white_32: -7633218867955313594
+      groundTransparent_white_33: 8581744795179289439
+      groundTransparent_white_34: 5477902583530568263
+      groundTransparent_white_35: 1855796439885988538
+      groundTransparent_white_36: -3438198758491888185
+      groundTransparent_white_37: -6320762973883014169
+      groundTransparent_white_38: 7781786258310882548
+      groundTransparent_white_4: -8729747735231205913
+      groundTransparent_white_5: 676853121739785293
+      groundTransparent_white_6: -5904390702244050718
+      groundTransparent_white_7: -8891171114390940420
+      groundTransparent_white_8: -8666351756952945738
+      groundTransparent_white_9: 4420331679932838752
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
