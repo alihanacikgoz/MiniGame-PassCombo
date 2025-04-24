@@ -102,7 +102,7 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Pass"",
-                    ""type"": ""Value"",
+                    ""type"": ""Button"",
                     ""id"": ""451c2e62-d339-476a-9318-26a334c244ec"",
                     ""expectedControlType"": """",
                     ""processors"": """",

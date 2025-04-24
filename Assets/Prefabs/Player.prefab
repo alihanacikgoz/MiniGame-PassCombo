@@ -32,6 +32,7 @@ Transform:
   m_Children:
   - {fileID: 7350868578697035588}
   - {fileID: 2497498203463472492}
+  - {fileID: 6109980540281467012}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5311966969847272118
@@ -46,10 +47,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87823ea3ea7e4b92bb2e5f9a67c6f0e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  passIntensity: 0
+  passIntensity: 10
   ballPrefab: {fileID: 2135538885490905401, guid: fc4cda64ce1ed4ee89d388de0fdc4387, type: 3}
   ballParent: {fileID: 8105868711606731345}
+  ballOrigin: {fileID: 2956656010077308932}
   anim: {fileID: 4106452767170202062}
+  passPerformer: 0
 --- !u!1 &691031957052659150
 GameObject:
   m_ObjectHideFlags: 0
@@ -61,9 +64,10 @@ GameObject:
   - component: {fileID: 2497498203463472492}
   - component: {fileID: 1005493665652240444}
   - component: {fileID: 4106452767170202062}
+  - component: {fileID: 5919926284071039964}
   m_Layer: 3
   m_Name: PlayerSprite
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -160,6 +164,74 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!70 &5919926284071039964
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 691031957052659150}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.87, y: 1.27}
+  m_Direction: 0
+--- !u!1 &2956656010077308932
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6109980540281467012}
+  m_Layer: 3
+  m_Name: BallOrigin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6109980540281467012
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2956656010077308932}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.913, y: -0.287, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1202886885076248186}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8105868711606731345
 GameObject:
   m_ObjectHideFlags: 0
@@ -170,8 +242,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7350868578697035588}
   m_Layer: 3
-  m_Name: BallOrigin
-  m_TagString: Untagged
+  m_Name: BallParent
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
