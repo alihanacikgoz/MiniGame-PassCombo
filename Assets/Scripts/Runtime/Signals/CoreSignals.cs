@@ -25,7 +25,7 @@ namespace Runtime.Signals
         #region Pass
 
         public Action<int?> OnCorrectPassAction = delegate { };
-        public Action OnWrongPassAction = delegate { };
+        public Action<int?> OnWrongPassAction = delegate { };
 
         #endregion
 

@@ -35,9 +35,9 @@ namespace Runtime.Core.Managers
             CoreSignals.Instance.OnWrongPassAction += DeductScore;
         }
 
-        private void DeductScore()
+        private void DeductScore(int? points)
         {
-            score--;
+            score-=points ?? 1;
         }
 
         private void AddScore(int? points)
