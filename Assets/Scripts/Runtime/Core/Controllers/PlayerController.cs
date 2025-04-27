@@ -76,6 +76,7 @@ namespace Runtime.Core.Controllers
             PlayerControlsSingleton.Instance.CharacterControls.Character.Move.performed += MoveAction;
 
             CoreSignals.Instance.OnCorrectPassAction += PassPerformedSuccessfully;
+            CoreSignals.Instance.OnWrongPassAction += PassPerformedUnsuccessfully;
         }
 
         private void UnAssignments()
@@ -84,6 +85,7 @@ namespace Runtime.Core.Controllers
             PlayerControlsSingleton.Instance.CharacterControls.Character.Move.performed -= MoveAction;
 
             CoreSignals.Instance.OnCorrectPassAction -= PassPerformedSuccessfully;
+            CoreSignals.Instance.OnWrongPassAction -= PassPerformedUnsuccessfully;
         }
 
         #endregion
@@ -92,8 +94,12 @@ namespace Runtime.Core.Controllers
 
         private void PassPerformedSuccessfully(int? points)
         {
-            _ball.transform.position = ballOrigin.transform.position;
-            _ballRigidbody.linearVelocity = Vector2.zero;
+            BallCorrection();
+        }
+
+        private void PassPerformedUnsuccessfully(int? points)
+        {
+            BallCorrection();
         }
 
 
@@ -115,13 +121,16 @@ namespace Runtime.Core.Controllers
 
         private void PassToTeamMate()
         {
-            Vector2 direction = (_teamMatePosition - (Vector2)ballOrigin.transform.position).normalized;
+            if (passPerformer)
+            {
+                Vector2 direction = (_teamMatePosition - (Vector2)ballOrigin.transform.position).normalized;
 
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(0f, 0f, angle);
+                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                transform.rotation = Quaternion.Euler(0f, 0f, angle);
 
-            _ballRigidbody.linearVelocity = direction * passIntensity;
-            passPerformer = false;
+                _ballRigidbody.linearVelocity = direction * passIntensity;
+                passPerformer = false;
+            }
         }
 
         private void BallInstantiate()
@@ -133,8 +142,13 @@ namespace Runtime.Core.Controllers
         private void MoveAction(InputAction.CallbackContext obj)
         {
             Vector2 move = obj.ReadValue<Vector2>();
-
             anim.SetBool("isWalking", move != Vector2.zero);
+        }
+        
+        private void BallCorrection()
+        {
+            _ball.transform.position = ballOrigin.transform.position;
+            _ballRigidbody.linearVelocity = Vector2.zero;
         }
 
         private void PassAction(InputAction.CallbackContext obj)
@@ -142,6 +156,7 @@ namespace Runtime.Core.Controllers
             if (obj.ReadValueAsButton())
             {
                 anim.SetTrigger("Kick");
+                CoreSignals.Instance.OnPlayerKickForPass?.Invoke();
                 TryPassToTeamMate();
             }
         }

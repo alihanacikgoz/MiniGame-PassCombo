@@ -18,14 +18,8 @@ namespace Runtime.Signals
             }
 
             Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
-
-        #endregion
-
-        #region Pass
-
-        public Action<int?> OnCorrectPassAction = delegate { };
-        public Action<int?> OnWrongPassAction = delegate { };
 
         #endregion
 
@@ -37,12 +31,18 @@ namespace Runtime.Signals
 
         #endregion
 
+        #region Pass
+
+        public Action<int?> OnCorrectPassAction = delegate { };
+        public Action<int?> OnWrongPassAction = delegate { };
+
+        #endregion
+
         #region PlayerActions
 
         public Action OnPlayerKickForPass = delegate { };
         public Action OnPlayerCelebrate = delegate { };
 
         #endregion
-
     }
 }

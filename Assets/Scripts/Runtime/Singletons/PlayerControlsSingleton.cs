@@ -16,6 +16,7 @@ namespace Runtime.Singletons
                 return;
             }
             Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
 
         #endregion
