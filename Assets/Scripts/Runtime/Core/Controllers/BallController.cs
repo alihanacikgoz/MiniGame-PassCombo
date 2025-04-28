@@ -9,7 +9,7 @@ namespace Runtime.Core.Controllers
         [SerializeField] private int pointsWillDeduct;
         private void OnBecameInvisible()
         {
-            CoreSignals.Instance.OnWrongPassAction?.Invoke(pointsWillDeduct);
+            BallActionsSignals.Instance.OnWrongPassAction?.Invoke(pointsWillDeduct);
         }
     }
 }

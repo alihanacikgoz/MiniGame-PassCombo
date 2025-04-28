@@ -14,7 +14,7 @@ namespace Runtime.Core.Controllers
             if (other.gameObject.CompareTag("Football"))
             {
                 gameObject.SetActive(false);
-                CoreSignals.Instance.OnCorrectPassAction?.Invoke(teammateOptions.pointsWillGive);
+                BallActionsSignals.Instance.OnCorrectPassAction?.Invoke(teammateOptions.pointsWillGive);
             }
         }
     }

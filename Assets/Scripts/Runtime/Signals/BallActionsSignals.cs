@@ -3,11 +3,11 @@ using UnityEngine;
 
 namespace Runtime.Signals
 {
-    public class CoreSignals : MonoBehaviour
+    public class BallActionsSignals : MonoBehaviour
     {
         #region Singleton
 
-        public static CoreSignals Instance { get; private set; }
+        public static BallActionsSignals Instance { get; private set; }
 
         private void Awake()
         {
@@ -16,32 +16,16 @@ namespace Runtime.Signals
                 Destroy(gameObject);
                 return;
             }
-
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
 
         #endregion
-
-        #region CoreGame
-
-        public Action OnGameStartAction = delegate { };
-        public Action OnGameEndAction = delegate { };
-        public Action OnTeammateSpawnAction = delegate { };
-
-        #endregion
-
+        
         #region Pass
 
         public Action<int?> OnCorrectPassAction = delegate { };
         public Action<int?> OnWrongPassAction = delegate { };
-
-        #endregion
-
-        #region PlayerActions
-
-        public Action OnPlayerKickForPass = delegate { };
-        public Action OnPlayerCelebrate = delegate { };
 
         #endregion
     }

@@ -31,8 +31,8 @@ namespace Runtime.Core.Managers
 
         private void OnEnable()
         {
-            CoreSignals.Instance.OnCorrectPassAction += AddScore;
-            CoreSignals.Instance.OnWrongPassAction += DeductScore;
+            BallActionsSignals.Instance.OnCorrectPassAction += AddScore;
+            BallActionsSignals.Instance.OnWrongPassAction += DeductScore;
         }
 
         private void DeductScore(int? points)
@@ -47,8 +47,8 @@ namespace Runtime.Core.Managers
 
         private void OnDisable()
         {
-            CoreSignals.Instance.OnCorrectPassAction -= AddScore;
-            CoreSignals.Instance.OnWrongPassAction -= DeductScore;
+            BallActionsSignals.Instance.OnCorrectPassAction -= AddScore;
+            BallActionsSignals.Instance.OnWrongPassAction -= DeductScore;
         }
     }
 }

@@ -75,8 +75,8 @@ namespace Runtime.Core.Controllers
             PlayerControlsSingleton.Instance.CharacterControls.Character.Pass.performed += PassAction;
             PlayerControlsSingleton.Instance.CharacterControls.Character.Move.performed += MoveAction;
 
-            CoreSignals.Instance.OnCorrectPassAction += PassPerformedSuccessfully;
-            CoreSignals.Instance.OnWrongPassAction += PassPerformedUnsuccessfully;
+            BallActionsSignals.Instance.OnCorrectPassAction += PassPerformedSuccessfully;
+            BallActionsSignals.Instance.OnWrongPassAction += PassPerformedUnsuccessfully;
         }
 
         private void UnAssignments()
@@ -84,8 +84,8 @@ namespace Runtime.Core.Controllers
             PlayerControlsSingleton.Instance.CharacterControls.Character.Pass.performed -= PassAction;
             PlayerControlsSingleton.Instance.CharacterControls.Character.Move.performed -= MoveAction;
 
-            CoreSignals.Instance.OnCorrectPassAction -= PassPerformedSuccessfully;
-            CoreSignals.Instance.OnWrongPassAction -= PassPerformedUnsuccessfully;
+            BallActionsSignals.Instance.OnCorrectPassAction -= PassPerformedSuccessfully;
+            BallActionsSignals.Instance.OnWrongPassAction -= PassPerformedUnsuccessfully;
         }
 
         #endregion
@@ -156,7 +156,7 @@ namespace Runtime.Core.Controllers
             if (obj.ReadValueAsButton())
             {
                 anim.SetTrigger("Kick");
-                CoreSignals.Instance.OnPlayerKickForPass?.Invoke();
+                PlayerActionsSignals.Instance.OnPlayerKickForPass?.Invoke();
                 TryPassToTeamMate();
             }
         }

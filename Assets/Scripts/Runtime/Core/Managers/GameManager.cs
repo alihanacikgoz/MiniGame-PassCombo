@@ -8,7 +8,7 @@ namespace Runtime.Core.Managers
     {
         private void Start()
         {
-            CoreSignals.Instance.OnTeammateSpawnAction?.Invoke();
+            CoreGameSignals.Instance.OnTeammateSpawnAction?.Invoke();
         }
     }
 }

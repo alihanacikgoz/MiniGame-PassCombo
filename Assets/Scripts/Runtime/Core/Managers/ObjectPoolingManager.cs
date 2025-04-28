@@ -48,7 +48,7 @@ namespace Runtime.Core.Managers
 
         private void OnEnable()
         {
-            CoreSignals.Instance.OnTeammateSpawnAction += CreatingPoolItems;
+            CoreGameSignals.Instance.OnTeammateSpawnAction += CreatingPoolItems;
         }
         
 
