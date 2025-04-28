@@ -4,9 +4,7 @@ namespace Runtime.Enums
     {
         MainMenu,
         Options,
-        Start,
-        Level,
-        Win,
-        Fail
+        PauseMenu,
+        GameOverMenu,
     }
 }
