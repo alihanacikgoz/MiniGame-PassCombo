@@ -1,3 +1,6 @@
+using System;
+using Runtime.Enums;
+using Runtime.Signals;
 using UnityEngine;
 
 namespace Runtime.Core.Controllers
@@ -17,34 +20,20 @@ namespace Runtime.Core.Controllers
             }
 
             Instance = this;
-            BackToMainMenu();
         }
 
         #endregion
-
-        #region Variables
-    
-        [SerializeField] private GameObject[] menuItems;
-    
-        #endregion
+        
         #region Costom Methods
 
         public void ActivateOptionsMenu()
         {
-            foreach (GameObject item in menuItems)
-            {
-                item.SetActive(false);
-            }
-            menuItems[1].SetActive(true);
+            CoreUISignals.Instance.OnOpenPanelAction?.Invoke(UIPanelTypes.Options, 0);
         }
 
         public void BackToMainMenu()
         {
-            foreach (GameObject item in menuItems)
-            {
-                item.SetActive(false);
-            }
-            menuItems[0].SetActive(true);
+            CoreUISignals.Instance.OnOpenPanelAction?.Invoke(UIPanelTypes.MainMenu, 0);
         }
 
         #endregion

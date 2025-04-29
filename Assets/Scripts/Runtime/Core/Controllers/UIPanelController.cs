@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Runtime.Enums;
 using Runtime.Signals;
@@ -11,6 +12,15 @@ namespace Runtime.Core.Controllers
         #region SerializeField Variables
 
         [SerializeField] private List<Transform> layers = new List<Transform>();
+
+        #endregion
+
+        #region Unity Callbacks
+
+        private void Awake()
+        {
+            OnOpenPanel(UIPanelTypes.MainMenu, 0);
+        }
 
         #endregion
 
