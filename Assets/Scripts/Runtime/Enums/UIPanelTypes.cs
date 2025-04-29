@@ -6,5 +6,6 @@ namespace Runtime.Enums
         Options,
         PauseMenu,
         GameOverMenu,
+        Confirm
     }
 }

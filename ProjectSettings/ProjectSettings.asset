@@ -943,7 +943,7 @@ PlayerSettings:
   activeInputHandler: 2
   windowsGamepadBackendHint: 0
   cloudProjectId: aa28ab33-7f4d-48cb-9ff8-bc01b4b4f823
-  framebufferDepthMemorylessMode: 0
+  framebufferDepthMemorylessMode: 2
   qualitySettingsNames: []
   projectName: MiniGame-PassCombo 2025-04-20_13-41-26
   organizationId: dorianthelycan

@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using Runtime.Signals;
 using UnityEngine;
@@ -9,7 +8,7 @@ namespace Runtime.Core.Controllers
     public class SceneController : MonoBehaviour
     {
         #region Singleton
-    
+
         public static SceneController Instance { get; private set; }
 
         private void Awake()
@@ -19,32 +18,54 @@ namespace Runtime.Core.Controllers
                 Destroy(gameObject);
                 return;
             }
+
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
 
         #endregion
 
+        #region Unity Callbacks
+
         private void OnEnable()
         {
+            Subscribe();
+        }
+
+        private void Subscribe()
+        {
             CoreGameSignals.Instance.OnGameStartAction += StartGame;
+            CoreGameSignals.Instance.OnGameEndAction += QuitGame;
+        }
+
+        private void Unsubscribe()
+        {
+            CoreGameSignals.Instance.OnGameStartAction -= StartGame;
+            CoreGameSignals.Instance.OnGameEndAction -= QuitGame;
         }
 
         private void OnDisable()
         {
-            CoreGameSignals.Instance.OnGameStartAction -= StartGame;
+            Unsubscribe();
         }
+
+        #endregion
 
         private void StartGame(int sceneIndex)
         {
-            Debug.Log("SceneController StartGame Function Called");
             StartCoroutine(LoadAsyncScene(sceneIndex));
+        }
+
+        private void QuitGame()
+        {
+            Debug.Log("SceneController: QuitGame Called");
+            Application.Quit();
         }
 
         IEnumerator LoadAsyncScene(int sceneIndex)
         {
             AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneIndex);
-        
+
             while (!asyncOperation.isDone)
             {
                 Debug.Log(asyncOperation.progress);
