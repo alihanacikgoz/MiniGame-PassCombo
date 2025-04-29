@@ -7,22 +7,6 @@ namespace Runtime.Core.Controllers
 {
     public class MenuController : MonoBehaviour
     {
-        #region Singleton
-
-        public static MenuController Instance { get; private set; }
-
-        private void Awake()
-        {
-            if (Instance != null && Instance != this)
-            {
-                Destroy(gameObject);
-                return;
-            }
-
-            Instance = this;
-        }
-
-        #endregion
         
         #region Costom Methods
 
@@ -34,6 +18,12 @@ namespace Runtime.Core.Controllers
         public void BackToMainMenu()
         {
             CoreUISignals.Instance.OnOpenPanelAction?.Invoke(UIPanelTypes.MainMenu, 0);
+        }
+
+        public void StartGame()
+        {
+            Debug.Log("MenuController StartGame Function Called");
+            CoreGameSignals.Instance.OnGameStartAction?.Invoke(1);
         }
 
         #endregion

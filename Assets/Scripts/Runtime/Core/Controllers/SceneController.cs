@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using Runtime.Signals;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -18,17 +20,24 @@ namespace Runtime.Core.Controllers
                 return;
             }
             Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
 
         #endregion
 
         private void OnEnable()
         {
-        
+            CoreGameSignals.Instance.OnGameStartAction += StartGame;
         }
 
-        public void StartGame(int sceneIndex)
+        private void OnDisable()
         {
+            CoreGameSignals.Instance.OnGameStartAction -= StartGame;
+        }
+
+        private void StartGame(int sceneIndex)
+        {
+            Debug.Log("SceneController StartGame Function Called");
             StartCoroutine(LoadAsyncScene(sceneIndex));
         }
 

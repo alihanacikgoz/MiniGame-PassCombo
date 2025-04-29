@@ -24,7 +24,7 @@ namespace Runtime.Signals
         
         #region CoreGame
 
-        public Action OnGameStartAction = delegate { };
+        public Action<int> OnGameStartAction = delegate { };
         public Action OnGameEndAction = delegate { };
         public Action OnTeammateSpawnAction = delegate { };
 
