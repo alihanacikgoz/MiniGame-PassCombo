@@ -1,8 +1,9 @@
 using NaughtyAttributes;
 using Runtime.Signals;
+using TMPro;
 using UnityEngine;
 
-namespace Runtime.Core.Managers
+namespace Runtime.UI.Managers
 {
     public class ScoreManager : MonoBehaviour
     {
@@ -26,6 +27,7 @@ namespace Runtime.Core.Managers
         #region SerializedField Variables
 
         [Foldout("Player Score"), SerializeField] private int score;
+        [Foldout("Player Score"), SerializeField] private TextMeshProUGUI scoreText;
 
         #endregion
 
@@ -38,11 +40,14 @@ namespace Runtime.Core.Managers
         private void DeductScore(int? points)
         {
             score-=points ?? 1;
+            scoreText.text = score.ToString();
+
         }
 
         private void AddScore(int? points)
         {
             score+= points ?? 1;
+            scoreText.text = score.ToString();
         }
 
         private void OnDisable()
