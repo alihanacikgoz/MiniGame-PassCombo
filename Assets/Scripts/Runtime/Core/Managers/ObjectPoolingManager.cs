@@ -16,7 +16,6 @@ namespace Runtime.Core.Managers
         public bool trueToPass;
         public int pointsWillGive;
         public bool isRare;
-        
     }
 
     public class ObjectPoolingManager : MonoBehaviour
@@ -37,29 +36,38 @@ namespace Runtime.Core.Managers
         }
 
         #endregion
-        
+
         public List<PoolItem> teammates;
         public List<GameObject> poolItems;
         public Transform poolParent;
         public float OFFSET;
-        
-        [Foldout("Player"), SerializeField]
-        private Transform playerTransform;
+
+        private GameObject go;
+
+        [Foldout("Player"), SerializeField] private Transform playerTransform;
 
         private void OnEnable()
         {
             CoreGameSignals.Instance.OnTeammateSpawnAction += CreatingPoolItems;
         }
-        
+
+        private void OnDisable()
+        {
+            CoreGameSignals.Instance.OnTeammateSpawnAction -= CreatingPoolItems;
+        }
+
 
         private void CreatingPoolItems()
         {
             poolItems = new List<GameObject>();
+
+
             foreach (PoolItem poolItem in teammates)
             {
                 for (int i = 0; i < poolItem.amount; i++)
                 {
-                    GameObject go = Instantiate(poolItem.teammate.teammatePrefab, poolParent.transform);
+                    go = Instantiate(poolItem.teammate.teammatePrefab, poolParent.transform);
+
                     go.GetComponent<TeamMateController>().teammateOptions = poolItem;
                     go.SetActive(false);
                     poolItems.Add(go);
