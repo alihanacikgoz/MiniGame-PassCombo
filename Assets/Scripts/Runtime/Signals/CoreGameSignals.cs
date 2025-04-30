@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Runtime.Signals
 {
@@ -24,9 +25,10 @@ namespace Runtime.Signals
         
         #region CoreGame
 
-        public Action<int> OnGameStartAction = delegate { };
-        public Action OnGameEndAction = delegate { };
-        public Action OnTeammateSpawnAction = delegate { };
+        public UnityAction<int> OnGameStartAction = delegate { };
+        public UnityAction OnGameEndAction = delegate { };
+        public UnityAction OnTeammateSpawnAction = delegate { };
+        public UnityAction OnQuitToMainMenuAction = delegate { };
 
         #endregion
     }

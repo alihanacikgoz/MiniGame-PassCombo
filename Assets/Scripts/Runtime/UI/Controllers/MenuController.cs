@@ -1,6 +1,7 @@
 using Runtime.Enums;
 using Runtime.Signals;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Runtime.UI.Controllers
 {
@@ -17,11 +18,23 @@ namespace Runtime.UI.Controllers
         public void BackToMainMenu()
         {
             CoreUISignals.Instance.OnCloseAllPanelsAction?.Invoke();
-            CoreUISignals.Instance.OnOpenPanelAction?.Invoke(UIPanelTypes.MainMenu, 0);
+            switch (SceneManager.GetActiveScene().buildIndex)
+            {
+                case 0:
+                    CoreUISignals.Instance.OnOpenPanelAction?.Invoke(UIPanelTypes.MainMenu, 0);
+                    break;
+                case 1:
+                    CoreUISignals.Instance.OnOpenPanelAction?.Invoke(UIPanelTypes.PauseMenu, 0);
+                    break;
+                default:
+                    break;
+            }
+            
         }
         
         public void StartGame()
         {
+            CoreUISignals.Instance.OnCloseAllPanelsAction?.Invoke();
             CoreGameSignals.Instance.OnGameStartAction?.Invoke(1);
         }
         
@@ -33,6 +46,30 @@ namespace Runtime.UI.Controllers
         public void QuitGame()
         {
             CoreGameSignals.Instance.OnGameEndAction?.Invoke();
+        }
+
+        public void OnButtonClick()
+        {
+            CoreUISignals.Instance.OnButtonClickAction?.Invoke();
+        }
+
+        public void Pause()
+        {
+            CoreUISignals.Instance.OnCloseAllPanelsAction?.Invoke();
+            CoreUISignals.Instance.OnOpenPanelAction?.Invoke(UIPanelTypes.PauseMenu, 0);
+            Time.timeScale = 0;
+        }
+        
+        public void Resume()
+        {
+            CoreUISignals.Instance.OnCloseAllPanelsAction?.Invoke();
+            Time.timeScale = 1;
+        }
+
+        public void QuitToMainMenu()
+        {
+            CoreUISignals.Instance.OnCloseAllPanelsAction?.Invoke();
+            CoreGameSignals.Instance.OnQuitToMainMenuAction?.Invoke();
         }
 
         #endregion

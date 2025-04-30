@@ -36,12 +36,14 @@ namespace Runtime.Core.Controllers
         {
             CoreGameSignals.Instance.OnGameStartAction += StartGame;
             CoreGameSignals.Instance.OnGameEndAction += QuitGame;
+            CoreGameSignals.Instance.OnQuitToMainMenuAction += QuitToMainMenu;
         }
 
         private void Unsubscribe()
         {
             CoreGameSignals.Instance.OnGameStartAction -= StartGame;
             CoreGameSignals.Instance.OnGameEndAction -= QuitGame;
+            CoreGameSignals.Instance.OnQuitToMainMenuAction -= QuitToMainMenu;
         }
 
         private void OnDisable()
@@ -60,6 +62,11 @@ namespace Runtime.Core.Controllers
         {
             Debug.Log("SceneController: QuitGame Called");
             Application.Quit();
+        }
+
+        private void QuitToMainMenu()
+        {
+            StartCoroutine(LoadAsyncScene(0));
         }
 
         IEnumerator LoadAsyncScene(int sceneIndex)

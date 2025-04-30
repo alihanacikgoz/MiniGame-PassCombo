@@ -1,8 +1,10 @@
+using System;
 using System.Collections.Generic;
 using Runtime.Enums;
 using Runtime.Signals;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Runtime.UI
 {
@@ -14,11 +16,30 @@ namespace Runtime.UI
 
         #endregion
 
-        #region Unity Callbacks
+        #region Singleton
+        
+        public static UIPanelController Instance { get; private set; }
 
         private void Awake()
         {
-            OnOpenPanel(UIPanelTypes.MainMenu, 0);
+            if (Instance != null && Instance != this)
+            {
+                Destroy(gameObject);
+                return;
+            }
+            Instance = this;
+        }
+
+        #endregion
+        
+        #region Unity Callbacks
+
+        private void Start()
+        {
+            if (SceneManager.GetActiveScene().buildIndex == 0 )
+            {
+                OnOpenPanel(UIPanelTypes.MainMenu,0);
+            }
         }
 
         #endregion

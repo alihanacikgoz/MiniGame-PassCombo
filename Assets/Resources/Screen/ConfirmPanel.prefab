@@ -126,8 +126,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -21.3, y: 22.1}
-  m_SizeDelta: {x: 41, y: 41}
+  m_AnchoredPosition: {x: 21.223312, y: -31}
+  m_SizeDelta: {x: 83, y: 83}
   m_Pivot: {x: 1, y: 0}
 --- !u!222 &1299292427293010537
 CanvasRenderer:
@@ -212,6 +212,18 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7902172642868559050}
+        m_TargetAssemblyTypeName: Runtime.UI.Controllers.MenuController, Assembly-CSharp
+        m_MethodName: OnButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+      - m_Target: {fileID: 7902172642868559050}
         m_TargetAssemblyTypeName: Runtime.Core.Controllers.MenuController, Assembly-CSharp
         m_MethodName: QuitGame
         m_Mode: 1
@@ -222,7 +234,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
 --- !u!1 &5665347050416603629
 GameObject:
   m_ObjectHideFlags: 0
@@ -394,8 +406,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 22.1, y: 22.1}
-  m_SizeDelta: {x: 41, y: 41}
+  m_AnchoredPosition: {x: -21, y: -31}
+  m_SizeDelta: {x: 83, y: 83}
   m_Pivot: {x: 0, y: 0}
 --- !u!222 &2061844408185921177
 CanvasRenderer:
@@ -480,6 +492,18 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7902172642868559050}
+        m_TargetAssemblyTypeName: Runtime.UI.Controllers.MenuController, Assembly-CSharp
+        m_MethodName: OnButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+      - m_Target: {fileID: 7902172642868559050}
         m_TargetAssemblyTypeName: Runtime.Core.Controllers.MenuController, Assembly-CSharp
         m_MethodName: BackToMainMenu
         m_Mode: 1
@@ -490,4 +514,4 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
