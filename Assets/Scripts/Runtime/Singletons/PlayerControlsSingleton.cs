@@ -1,4 +1,7 @@
+using System;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Runtime.Singletons
 {
@@ -15,8 +18,8 @@ namespace Runtime.Singletons
                 Destroy(gameObject);
                 return;
             }
+
             Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
 
         #endregion
@@ -26,7 +29,7 @@ namespace Runtime.Singletons
         private static PlayerInputAction _characterControls;
 
         #endregion
-        
+
         public PlayerInputAction CharacterControls => _characterControls;
 
         private void OnEnable()
@@ -34,7 +37,7 @@ namespace Runtime.Singletons
             _characterControls = new PlayerInputAction();
             _characterControls.Enable();
         }
-
+        
         private void OnDisable()
         {
             _characterControls.Disable();

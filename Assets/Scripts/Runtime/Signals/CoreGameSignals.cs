@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -29,6 +28,8 @@ namespace Runtime.Signals
         public UnityAction OnGameEndAction = delegate { };
         public UnityAction OnTeammateSpawnAction = delegate { };
         public UnityAction OnQuitToMainMenuAction = delegate { };
+        public UnityAction OnRestartGameAction = delegate { };
+        public UnityAction OnGameOverAction = delegate { };
 
         #endregion
     }

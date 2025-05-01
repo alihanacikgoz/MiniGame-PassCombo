@@ -34,6 +34,10 @@ namespace Runtime.UI.Controllers
         
         public void StartGame()
         {
+            if (Time.timeScale == 0)
+            {
+                Time.timeScale = 1;
+            }
             CoreUISignals.Instance.OnCloseAllPanelsAction?.Invoke();
             CoreGameSignals.Instance.OnGameStartAction?.Invoke(1);
         }
@@ -69,6 +73,8 @@ namespace Runtime.UI.Controllers
         public void QuitToMainMenu()
         {
             CoreUISignals.Instance.OnCloseAllPanelsAction?.Invoke();
+            if (Time.timeScale == 0)
+                Time.timeScale = 1;
             CoreGameSignals.Instance.OnQuitToMainMenuAction?.Invoke();
         }
 

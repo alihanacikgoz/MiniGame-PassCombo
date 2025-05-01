@@ -71,8 +71,6 @@ namespace Runtime.Core.Managers
                     break;
                 }
             }
-
-            
         }
 
         private bool IsSpawnPointValid(Vector2 spawnPoint)

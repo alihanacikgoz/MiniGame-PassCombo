@@ -82,8 +82,7 @@ namespace Runtime.Core.Managers
                 if (!poolItems[i].activeInHierarchy && poolItems[i].CompareTag(id))
                 {
                     poolItems[i].transform.position = spawnPoint;
-
-                    // ROTATION EKLENDİ
+                    
                     Vector3 directionToPlayer = playerTransform.position - spawnPoint;
                     float angle = Mathf.Atan2(directionToPlayer.y, directionToPlayer.x) * Mathf.Rad2Deg;
                     poolItems[i].transform.rotation = Quaternion.Euler(0f, 0f, angle + OFFSET);
@@ -99,8 +98,7 @@ namespace Runtime.Core.Managers
                 {
                     GameObject obj = Instantiate(item.teammate.teammatePrefab, poolParent.transform);
                     obj.transform.position = spawnPoint;
-
-                    // ROTATION EKLENDİ
+                    
                     Vector3 directionToPlayer = playerTransform.position - spawnPoint;
                     float angle = Mathf.Atan2(directionToPlayer.y, directionToPlayer.x) * Mathf.Rad2Deg;
                     obj.transform.rotation = Quaternion.Euler(0f, 0f, angle + OFFSET);

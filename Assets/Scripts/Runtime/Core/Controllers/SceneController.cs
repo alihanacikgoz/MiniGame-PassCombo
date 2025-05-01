@@ -60,7 +60,6 @@ namespace Runtime.Core.Controllers
 
         private void QuitGame()
         {
-            Debug.Log("SceneController: QuitGame Called");
             Application.Quit();
         }
 

@@ -1,11 +1,10 @@
-using System;
 using NaughtyAttributes;
 using Runtime.Signals;
 using Runtime.Singletons;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
+using UnityEngine.SceneManagement;
+
 
 namespace Runtime.Core.Controllers
 {
@@ -45,7 +44,7 @@ namespace Runtime.Core.Controllers
 
         #region Unity Callbacks
 
-        private void OnEnable()
+        private void Start()
         {
             Assignments();
         }
@@ -77,6 +76,15 @@ namespace Runtime.Core.Controllers
 
             BallActionsSignals.Instance.OnCorrectPassAction += PassPerformedSuccessfully;
             BallActionsSignals.Instance.OnWrongPassAction += PassPerformedUnsuccessfully;
+
+            SceneManager.sceneLoaded += OnSceneLoaded;
+        }
+
+        private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
+        {
+            ballPrefab = GameObject.FindGameObjectWithTag("Football");
+            ballOrigin = GameObject.FindGameObjectWithTag("BallOrigin");
+            ballParent = GameObject.FindGameObjectWithTag("BallParent");
         }
 
         private void UnAssignments()
@@ -86,6 +94,8 @@ namespace Runtime.Core.Controllers
 
             BallActionsSignals.Instance.OnCorrectPassAction -= PassPerformedSuccessfully;
             BallActionsSignals.Instance.OnWrongPassAction -= PassPerformedUnsuccessfully;
+
+            SceneManager.sceneLoaded -= OnSceneLoaded;
         }
 
         #endregion
@@ -142,9 +152,12 @@ namespace Runtime.Core.Controllers
         private void MoveAction(InputAction.CallbackContext obj)
         {
             Vector2 move = obj.ReadValue<Vector2>();
-            anim.SetBool("isWalking", move != Vector2.zero);
+            if (anim != null)
+            {
+                anim.SetBool("isWalking", move != Vector2.zero);
+            }
         }
-        
+
         private void BallCorrection()
         {
             _ball.transform.position = ballOrigin.transform.position;
@@ -155,7 +168,11 @@ namespace Runtime.Core.Controllers
         {
             if (obj.ReadValueAsButton())
             {
-                anim.SetTrigger("Kick");
+                if (anim != null)
+                {
+                    anim.SetTrigger("Kick");
+                }
+
                 PlayerActionsSignals.Instance.OnPlayerKickForPass?.Invoke();
                 TryPassToTeamMate();
             }

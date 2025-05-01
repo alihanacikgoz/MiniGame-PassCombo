@@ -6,6 +6,8 @@ TagManager:
   tags:
   - TeamMate
   - Football
+  - BallParent
+  - BallOrigin
   layers:
   - Default
   - TransparentFX

@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Runtime.Enums;
 using Runtime.Signals;
@@ -95,7 +94,7 @@ namespace Runtime.UI
             CoreUISignals.Instance.OnCloseAllPanelsAction -= OnCloseAllPanels;
         }
 
-        private void OnDestroy()
+        private void OnDisable()
         {
             UnsubscribeEvents();
         }
