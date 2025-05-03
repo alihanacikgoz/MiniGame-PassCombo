@@ -6,8 +6,8 @@ namespace Runtime
     {
         public DifficultyLevels level;
         public int teammateCount;
+        public float targetActiveTime;
         public bool deductPointsOnWrongPass;
-        
 
     }
 }
