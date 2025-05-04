@@ -10,10 +10,13 @@ namespace Runtime.Core.Controllers
     public class TeamMateController : MonoBehaviour
     {
         public PoolItem teammateOptions;
-        
+        public float waitForSeconds = 2f;
+
         private void Start()
         {
             StartCoroutine(DisappearTeammate());
+            waitForSeconds = DifficultyManager.Instance.selectedSettings.waitForSeconds;
+            Debug.Log("Difficulty Level"+waitForSeconds);
         }
         
         private void OnCollisionEnter2D(Collision2D other)
@@ -27,7 +30,7 @@ namespace Runtime.Core.Controllers
 
         IEnumerator DisappearTeammate()
         {
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(waitForSeconds);
             gameObject.SetActive(false);
         }
     }

@@ -1,3 +1,4 @@
+using Runtime.Core.Managers;
 using Runtime.Enums;
 using Runtime.Signals;
 using UnityEngine;
@@ -76,6 +77,21 @@ namespace Runtime.UI.Controllers
             if (Time.timeScale == 0)
                 Time.timeScale = 1;
             CoreGameSignals.Instance.OnQuitToMainMenuAction?.Invoke();
+        }
+
+        public void EasyDifficulty()
+        {
+            CoreGameSignals.Instance.OnGettingDifficultyChanged(DifficultyLevels.Easy);
+        }
+        
+        public void MediumDifficulty()
+        {
+            CoreGameSignals.Instance.OnGettingDifficultyChanged(DifficultyLevels.Medium);
+        }
+        
+        public void HardDifficulty()
+        {
+            CoreGameSignals.Instance.OnGettingDifficultyChanged(DifficultyLevels.Hard);
         }
 
         #endregion

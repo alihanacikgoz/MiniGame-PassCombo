@@ -1,29 +1,59 @@
 using System;
 using System.Collections.Generic;
 using Runtime.Enums;
+using Runtime.Signals;
 using UnityEngine;
 
 namespace Runtime.Core.Managers
 {
     public class DifficultyManager : MonoBehaviour
     {
-        public DifficultyLevels currentLevel;
-        public List<DifficultySettings> difficultyConfigs;
+        #region Singleton
+        
+        public static DifficultyManager Instance { get; private set; }
 
-        public static event Action<DifficultySettings> OnDifficultyChanged;
-
-        public void SetDifficulty(DifficultyLevels level)
+        private void Awake()
         {
-            currentLevel = level;
-            DifficultySettings settings = difficultyConfigs.Find(x => x.level == level);
-            if (settings == null)
+            if (Instance != null && Instance != this)
             {
-                OnDifficultyChanged?.Invoke(settings);
+                Destroy(gameObject);
+                return;
+            }
+            Instance = this;
+            CoreGameSignals.Instance.OnGettingDifficultyChanged += SetDifficulty;
+            DontDestroyOnLoad(gameObject);
+        }
+
+        #endregion
+        
+        
+        public List<DifficultySettings> difficultyConfigs;
+        private DifficultySettings settings;
+        public DifficultySettings selectedSettings;
+
+        private void SetDifficulty(DifficultyLevels level)
+        {
+            selectedSettings = SettingDifficultyLevel(level);
+        }
+
+        public DifficultySettings SettingDifficultyLevel(DifficultyLevels level)
+        {
+            settings = difficultyConfigs.Find(x => x.level == level);
+            if (settings != null)
+            {
+                Debug.Log("DifficultyManager Settings update to " + settings.level );
+                return settings;
             }
             else
             {
-                Debug.Log("There is no any feature for the difficulty level selected.");
+                settings = difficultyConfigs[0];
             }
+            return null;
+        }
+
+        private void OnDisable()
+        {
+            CoreGameSignals.Instance.OnGettingDifficultyChanged -= SetDifficulty;
         }
     }
 }

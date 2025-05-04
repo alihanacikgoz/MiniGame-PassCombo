@@ -1,3 +1,4 @@
+using Runtime.Enums;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -30,7 +31,7 @@ namespace Runtime.Signals
         public UnityAction OnQuitToMainMenuAction = delegate { };
         public UnityAction OnRestartGameAction = delegate { };
         public UnityAction OnGameOverAction = delegate { };
-
+        public UnityAction<DifficultyLevels> OnGettingDifficultyChanged = delegate { };
         #endregion
     }
 }
